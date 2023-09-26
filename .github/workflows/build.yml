@@ -1,0 +1,33 @@
+name: Build Package and Test it
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_wheels:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-2022]
+
+    name: Build wheel on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: actions/setup-python@v2
+      name: Install Python
+      with:
+        python-version: '3.9'
+
+    - name: Build source
+      run: |
+        pip install .
+
+    - name: Pytest
+      run: |
+        pip install pytest
+        pytest
