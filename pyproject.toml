@@ -15,9 +15,6 @@ dependencies = [
     "pandas"
 ]
 
-[tool.setuptools]
-include = ["data/*.csv"]
-
 [tool.pytest.ini_options]
 testpaths = [
     "tests"
