@@ -15,6 +15,9 @@ dependencies = [
     "pandas"
 ]
 
+[tool.setuptools.package-data]
+walrus = ["data/*.csv"]
+
 [tool.pytest.ini_options]
 testpaths = [
     "tests"
