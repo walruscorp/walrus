@@ -2,7 +2,7 @@ name: Build Package and Test it
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, anushka ]
   pull_request:
     branches: [ main ]
 
