@@ -22,3 +22,11 @@ walrus = ["data/*.csv"]
 testpaths = [
     "tests"
 ]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "twine"
+]
+
+
