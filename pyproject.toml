@@ -12,7 +12,7 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
 ]
 dependencies = [
-    "numpy", "pandas"
+    "numpy", "pandas", "pytest"
 ]
 
 [tool.setuptools.package-data]
