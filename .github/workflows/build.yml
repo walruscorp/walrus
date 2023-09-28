@@ -25,10 +25,7 @@ jobs:
         python-version: '3.9'
 
     - name: Build source
-      run: |
-        pip install .
+      run: pip install .[dev]
 
     - name: Pytest
-      run: |
-        pip install pytest
-        pytest
+      run: pytest
