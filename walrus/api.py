@@ -1,5 +1,4 @@
-import os.path
-import pandas as pd
+import os
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
 file_path = os.path.join(file_dir, 'data', 'country-capitals.csv')
@@ -18,10 +17,18 @@ def find_capital(country_name, raise_errors=False):
         # Split the file line by line and store it in a list
         data = file.readlines()
 
+        # Header of the csv file
+        header = data[0].split(",")
+
+        # Indexes for country and capitals, respectively
+        country_col = header.index('CountryName')
+        capital_col = header.index('CapitalName')
+
+        # Ignore the first line
         # Store country and its capital as a key-value pair
-        for line in data:
+        for line in data[1:]:
             values = line.split(",")
-            country_capital[values[0]] = values[1]
+            country_capital[values[country_col]] = values[capital_col]
 
     capital = country_capital.get(country_name)
 
@@ -36,25 +43,7 @@ def find_capital(country_name, raise_errors=False):
     return capital
 
 
-def get_capital(country_name, raise_errors=False):
-    # Load the data
-    data = pd.read_csv(file_path)
-
-    # Find the row where the 'CountryName' column matches the input country_name
-    country_data = data[data['CountryName'] == country_name]
-
-    # Check if any data was found
-    if country_data.empty:
-        if raise_errors:
-            raise ValueError(f"No data found for country: {country_name}")
-        else:
-            return None
-
-    # Extract and return the capital from the matched row
-    return country_data.iloc[0]['CapitalName']
-
-
-def get_capital_2(country_names, raise_errors=False):
+def get_capital(country_names, raise_errors=False):
     # Handle a single country name
     if isinstance(country_names, str):
         return find_capital(country_names, raise_errors)
