@@ -57,7 +57,7 @@ def get_capital_2(country_names, raise_errors=False):
 
     # Handle multiple country names
     else:
-        # Dictionary to store hte country and capitals of requested countries
+        # Dictionary to store the country and capitals of requested countries
         results = {}
 
         for country in country_names:
