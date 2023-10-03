@@ -11,11 +11,10 @@ class FileConfig:
             country_col = header.index('CountryName')
             capital_col = header.index('CapitalName')
 
-            for line in data[1:]:
-                values = line.split(",")
-                country_name = values[country_col]
-                capital_name = values[capital_col]
-                self._country_capital[country_name] = capital_name
+            self._country_capital = {
+                line.split(",")[country_col]: line.split(",")[capital_col]
+                for line in data[1:]
+            }
 
     def get_capital(self, country):
         return self._country_capital.get(country, None)
