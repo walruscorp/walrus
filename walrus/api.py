@@ -29,9 +29,5 @@ def get_capital(country_names, raise_errors=False):
 
     # Handle multiple country names
     else:
-        results = {}
-
-        for country in country_names:
-            results[country] = find_capital(country, raise_errors)
-
-        return results
+        return {country: find_capital(country, raise_errors)
+                for country in country_names}
