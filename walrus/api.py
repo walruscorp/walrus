@@ -1,28 +1,31 @@
-import os.path
-import pandas as pd
+import os
+from walrus.country import Country
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
 file_path = os.path.join(file_dir, 'data', 'country-capitals.csv')
+country = Country(file_path)
 
 
 def hello():
     return "Hello World"
 
 
-def get_capital(country_name, raise_errors=False):
-    # Load the data
-    data = pd.read_csv(file_path)
+def find_capital(country_name, raise_errors=False):
+    capital = country.get_capital(country_name)
 
-    # Find the row where the 'CountryName' column matches the input country_name
-    country_data = data[data['CountryName'] == country_name]
-
-    # Check if any data was found
-    if country_data.empty:
+    if capital is None:
         if raise_errors:
-            raise ValueError(f"No data found for country: {country_name}")
+            raise ValueError(f"Data not found for: {country_name}")
         else:
             return None
 
-    # Extract and return the capital from the matched row
-    return country_data.iloc[0]['CapitalName']
+    return capital
 
+
+def get_capital(country_names, raise_errors=False):
+    if isinstance(country_names, str):
+        return find_capital(country_names, raise_errors)
+
+    else:
+        return {a_country: find_capital(a_country, raise_errors)
+                for a_country in country_names}
