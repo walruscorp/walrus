@@ -8,17 +8,25 @@ def test_capital_single_correct():
 
 
 def test_capital_tuple_correct():
-    assert (get_capital(("Australia", "France"))
-            == {"Australia": "Canberra", "France": "Paris"})
-    assert (get_capital(("Australia", "France"), raise_errors=True)
-            == {"Australia": "Canberra", "France": "Paris"})
+    assert get_capital(("Australia", "France")) == {
+        "Australia": "Canberra",
+        "France": "Paris",
+    }
+    assert get_capital(("Australia", "France"), raise_errors=True) == {
+        "Australia": "Canberra",
+        "France": "Paris",
+    }
 
 
 def test_capital_list_correct():
-    assert (get_capital(["Australia", "France"])
-            == {"Australia": "Canberra", "France": "Paris"})
-    assert (get_capital(["Australia", "France"], raise_errors=True)
-            == {"Australia": "Canberra", "France": "Paris"})
+    assert get_capital(["Australia", "France"]) == {
+        "Australia": "Canberra",
+        "France": "Paris",
+    }
+    assert get_capital(["Australia", "France"], raise_errors=True) == {
+        "Australia": "Canberra",
+        "France": "Paris",
+    }
 
 
 def test_capital_single_incorrect():
@@ -28,14 +36,18 @@ def test_capital_single_incorrect():
 
 
 def test_capital_tuple_incorrect():
-    assert (get_capital(("Australia", "Fraance"))
-            == {"Australia": "Canberra", "Fraance": None})
+    assert get_capital(("Australia", "Fraance")) == {
+        "Australia": "Canberra",
+        "Fraance": None,
+    }
     with pytest.raises(ValueError, match="Data not found for: Austraalia"):
         get_capital(("Austraalia", "France"), raise_errors=True)
 
 
 def test_capital_list_incorrect():
-    assert (get_capital(["Australia", "Fraance"])
-            == {"Australia": "Canberra", "Fraance": None})
+    assert get_capital(["Australia", "Fraance"]) == {
+        "Australia": "Canberra",
+        "Fraance": None,
+    }
     with pytest.raises(ValueError, match="Data not found for: Austraalia"):
         get_capital(["Austraalia", "France"], raise_errors=True)

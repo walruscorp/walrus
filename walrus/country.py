@@ -4,12 +4,12 @@ class Country:
         self._set_capital(file_path)
 
     def _set_capital(self, file_path):
-        with open(file_path, 'r') as file:
+        with open(file_path, "r") as file:
             data = file.readlines()
 
             header = data[0].split(",")
-            country_col = header.index('CountryName')
-            capital_col = header.index('CapitalName')
+            country_col = header.index("CountryName")
+            capital_col = header.index("CapitalName")
 
             self._country_capital = {
                 values[country_col]: values[capital_col]
