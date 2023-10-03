@@ -23,11 +23,9 @@ def find_capital(country_name, raise_errors=False):
 
 
 def get_capital(country_names, raise_errors=False):
-    # Handle a single country name
     if isinstance(country_names, str):
         return find_capital(country_names, raise_errors)
 
-    # Handle multiple country names
     else:
         return {country: find_capital(country, raise_errors)
                 for country in country_names}
