@@ -1,9 +1,9 @@
 import os
-from walrus.FileConfig import FileConfig
+from walrus.country import Country
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
 file_path = os.path.join(file_dir, 'data', 'country-capitals.csv')
-file_object = FileConfig(file_path)
+country = Country(file_path)
 
 
 def hello():
@@ -11,7 +11,7 @@ def hello():
 
 
 def find_capital(country_name, raise_errors=False):
-    capital = file_object.get_capital(country_name)
+    capital = country.get_capital(country_name)
 
     if capital is None:
         if raise_errors:
@@ -27,5 +27,5 @@ def get_capital(country_names, raise_errors=False):
         return find_capital(country_names, raise_errors)
 
     else:
-        return {country: find_capital(country, raise_errors)
-                for country in country_names}
+        return {a_country: find_capital(a_country, raise_errors)
+                for a_country in country_names}
