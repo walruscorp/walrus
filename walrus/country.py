@@ -1,4 +1,4 @@
-class FileConfig:
+class Country:
     def __init__(self, file_path):
         self._country_capital = {}
         self._set_capital(file_path)
@@ -12,8 +12,9 @@ class FileConfig:
             capital_col = header.index('CapitalName')
 
             self._country_capital = {
-                line.split(",")[country_col]: line.split(",")[capital_col]
+                values[country_col]: values[capital_col]
                 for line in data[1:]
+                for values in [line.split(",")]
             }
 
     def get_capital(self, country):
