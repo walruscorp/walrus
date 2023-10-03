@@ -23,22 +23,19 @@ def test_capital_list_correct():
 
 def test_capital_single_incorrect():
     assert get_capital("Austraalia") is None
-    with pytest.raises(ValueError,
-                       match="No data found for country: Austraalia"):
+    with pytest.raises(ValueError, match="Data not found for: Austraalia"):
         get_capital("Austraalia", raise_errors=True)
 
 
 def test_capital_tuple_incorrect():
     assert (get_capital(("Australia", "Fraance"))
             == {"Australia": "Canberra", "Fraance": None})
-    with pytest.raises(ValueError,
-                       match="No data found for country: Austraalia"):
+    with pytest.raises(ValueError, match="Data not found for: Austraalia"):
         get_capital(("Austraalia", "France"), raise_errors=True)
 
 
 def test_capital_list_incorrect():
     assert (get_capital(["Australia", "Fraance"])
             == {"Australia": "Canberra", "Fraance": None})
-    with pytest.raises(ValueError,
-                       match="No data found for country: Austraalia"):
+    with pytest.raises(ValueError, match="Data not found for: Austraalia"):
         get_capital(["Austraalia", "France"], raise_errors=True)

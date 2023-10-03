@@ -15,7 +15,7 @@ def find_capital(country_name, raise_errors=False):
 
     if capital is None:
         if raise_errors:
-            raise ValueError(f"No data found for country: {country_name}")
+            raise ValueError(f"Data not found for: {country_name}")
         else:
             return None
 
