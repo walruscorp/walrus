@@ -1,6 +1,6 @@
 [project]
 name = "vineetbansal-walrus"
-version = "2.0.0"
+version = "3.0.0"
 authors = [
   { name="Vineet Bansal", email="vineetb@princeton.edu" },
 ]
