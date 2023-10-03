@@ -13,7 +13,9 @@ class FileConfig:
 
             for line in data[1:]:
                 values = line.split(",")
-                self._country_capital[values[country_col]] = values[capital_col]
+                country_name = values[country_col]
+                capital_name = values[capital_col]
+                self._country_capital[country_name] = capital_name
 
     def get_capital(self, country):
         return self._country_capital.get(country, None)
