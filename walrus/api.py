@@ -11,7 +11,7 @@ def hello():
 
 
 def find_capital(country_name, raise_errors=False):
-    capital = country.get_capital(country_name)
+    capital = country[country_name]
 
     if capital is None:
         if raise_errors:

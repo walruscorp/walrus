@@ -3,6 +3,9 @@ class Country:
         self._country_capital = {}
         self._set_capital(file_path)
 
+    def __getitem__(self, country_name):
+        return self._country_capital.get(country_name, None)
+
     def _set_capital(self, file_path):
         with open(file_path, "r") as file:
             data = file.readlines()
@@ -16,6 +19,3 @@ class Country:
                 for line in data[1:]
                 for values in [line.split(",")]
             }
-
-    def get_capital(self, country):
-        return self._country_capital.get(country, None)
