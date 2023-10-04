@@ -2,7 +2,7 @@ name: Build Package and Test it
 
 on:
   push:
-    branches: [ main, anushka ]
+    branches: [ main, anushka, smart_class ]
   pull_request:
     branches: [ main ]
 
@@ -27,12 +27,13 @@ jobs:
     - name: Build source
       run: pip install .[dev]
 
-    - name: Pytest
-      run: pytest
-
     - name: Flake8
       run: flake8
 
     - name: Pyright
       run: pyright
+
+    - name: Pytest
+      run: pytest
+
 
