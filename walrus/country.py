@@ -1,10 +1,28 @@
 class Country:
     def __init__(self, file_path):
         self._country_capital = {}
+        self._length = 0
+        self._index = 0
         self._set_capital(file_path)
 
     def __getitem__(self, country_name):
         return self._country_capital.get(country_name, None)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index < self._length:
+            self._index += 1
+            return list(self._country_capital.keys())[self._index - 1]
+        else:
+            raise StopIteration
+
+    def __len__(self):
+        return self._length
+
+    def __str__(self):
+        return self._country_capital
 
     def _set_capital(self, file_path):
         with open(file_path, "r") as file:
@@ -19,3 +37,5 @@ class Country:
                 for line in data[1:]
                 for values in [line.split(",")]
             }
+
+            self._length = len(self._country_capital)
