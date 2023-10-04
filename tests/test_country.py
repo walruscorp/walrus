@@ -1,8 +1,6 @@
 import pytest
 import os
 from walrus.country import Country
-import sys
-from io import StringIO
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
 file_path = os.path.join(file_dir, "test_data", "test-data.csv")
@@ -71,7 +69,3 @@ def test_nested_loop():
             count += 1
 
     assert count == 34 * 34
-
-
-
-

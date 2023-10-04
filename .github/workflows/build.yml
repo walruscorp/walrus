@@ -27,12 +27,13 @@ jobs:
     - name: Build source
       run: pip install .[dev]
 
-    - name: Pytest
-      run: pytest
-
     - name: Flake8
       run: flake8
 
     - name: Pyright
       run: pyright
+
+    - name: Pytest
+      run: pytest
+
 
