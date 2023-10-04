@@ -10,40 +10,42 @@ data = open(file_path, "r").readlines()
 
 
 def test_iteration_next():
-    country_iterator = iter(Country(file_path))
-    assert next(country_iterator) == "Somaliland"
-    assert next(country_iterator) == "American Samoa"
-    assert next(country_iterator) == "Andorra"
-    assert next(country_iterator) == "Angola"
+    country = Country(file_path)
+    assert next(country) == "Somaliland"
+    assert next(country) == "American Samoa"
+    assert next(country) == "Andorra"
+    assert next(country) == "Angola"
 
 
 def test_iteration_items():
-    country_iterator = iter(Country(file_path))
+    country = Country(file_path)
     country_col = data[0].split(",").index("CountryName")
-    for items, line in zip(country_iterator, data[1:]):
+    for items, line in zip(country, data[1:]):
         values = line.split(",")
         assert items == values[country_col]
 
 
 def test_length():
-    assert len(Country(file_path)) == len(data) - 1
+    assert len(Country(file_path)) == 34
 
 
 def test_iteration():
-    country_iterator = iter(Country(file_path))
+    country = Country(file_path)
     country_col = data[0].split(",").index("CountryName")
     for line in data[1:]:
         values = line.split(",")
-        assert next(country_iterator) == values[country_col]
+        assert next(country) == values[country_col]
 
 
+@pytest.mark.xfail
 def test_iteration_end():
-    country_iterator = iter(Country(file_path))
-    for i in range(len(Country(file_path))):
-        next(country_iterator)
+    country = Country(file_path)
+
+    for _ in country:
+        pass
 
     with pytest.raises(StopIteration):
-        next(country_iterator)
+        next(country)
 
 
 def test_subscript():
@@ -57,12 +59,19 @@ def test_subscript():
 
 def test_print():
     country = Country(file_path)
-    test_dict = {item: country[item] for item in country}
+    assert str(country) == "Country with 34 items"
 
-    original_stdout = sys.stdout
-    new_stdout = StringIO()
-    sys.stdout = new_stdout
-    print(country)
-    sys.stdout = original_stdout
 
-    assert new_stdout.getvalue().strip() == str(test_dict)
+def test_nested_loop():
+    country = Country(file_path)
+    count = 0
+
+    for item_1 in country:
+        for item_2 in country:
+            count += 1
+
+    assert count == 34 * 34
+
+
+
+

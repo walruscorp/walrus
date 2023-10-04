@@ -1,5 +1,6 @@
 class Country:
     def __init__(self, file_path):
+        self._file_path = file_path
         self._country_capital = {}
         self._length = 0
         self._index = 0
@@ -9,7 +10,7 @@ class Country:
         return self._country_capital.get(country_name, None)
 
     def __iter__(self):
-        return self
+        return Country(self._file_path)
 
     def __next__(self):
         if self._index < self._length:
@@ -22,7 +23,7 @@ class Country:
         return self._length
 
     def __str__(self):
-        return str(self._country_capital)
+        return "Country with " + str(self._length) + " items"
 
     def _set_capital(self, file_path):
         with open(file_path, "r") as file:
