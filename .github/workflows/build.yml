@@ -2,7 +2,7 @@ name: Build Package and Test it
 
 on:
   push:
-    branches: [ main, anushka ]
+    branches: [ main, anushka, smart_class ]
   pull_request:
     branches: [ main ]
 

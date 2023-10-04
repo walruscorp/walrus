@@ -54,6 +54,7 @@ def test_subscript():
     assert country["Angola"] == "Luanda"
     assert country["Nothing"] is None
 
+
 def test_print():
     country = Country(file_path)
     test_dict = {item: country[item] for item in country}
@@ -61,7 +62,6 @@ def test_print():
     original_stdout = sys.stdout
     new_stdout = StringIO()
     sys.stdout = new_stdout
-
     print(country)
     sys.stdout = original_stdout
 
