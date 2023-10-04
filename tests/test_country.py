@@ -1,6 +1,8 @@
 import pytest
 import os
 from walrus.country import Country
+import sys
+from io import StringIO
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
 file_path = os.path.join(file_dir, "test_data", "test-data.csv")
@@ -51,3 +53,16 @@ def test_subscript():
     assert country["Bahamas"] == "Nassau"
     assert country["Angola"] == "Luanda"
     assert country["Nothing"] is None
+
+def test_print():
+    country = Country(file_path)
+    test_dict = {item: country[item] for item in country}
+
+    original_stdout = sys.stdout
+    new_stdout = StringIO()
+    sys.stdout = new_stdout
+
+    print(country)
+    sys.stdout = original_stdout
+
+    assert new_stdout.getvalue().strip() == str(test_dict)

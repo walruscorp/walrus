@@ -22,7 +22,7 @@ class Country:
         return self._length
 
     def __str__(self):
-        return self._country_capital
+        return str(self._country_capital)
 
     def _set_capital(self, file_path):
         with open(file_path, "r") as file:
