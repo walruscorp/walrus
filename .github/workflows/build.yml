@@ -27,8 +27,11 @@ jobs:
     - name: Build source
       run: pip install .[dev]
 
-    - name: Black format and check
-      run: black .
+    - name: Black format mode
+      run: black
+
+    - name: Black check mode
+      run: black --check
 
     - name: Flake8
       run: flake8
