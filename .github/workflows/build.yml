@@ -27,8 +27,6 @@ jobs:
     - name: Build source
       run: pip install .[dev]
 
-    - name: Black format mode
-      run: black .
 
     - name: Black check mode
       run: black --check .
