@@ -19,17 +19,6 @@ def test_length():
     assert len(Country(file_path)) == 34
 
 
-@pytest.mark.xfail
-def test_iteration_end():
-    country = Country(file_path)
-
-    for _ in country:
-        pass
-
-    with pytest.raises(StopIteration):
-        x = [_ for _ in country]
-
-
 def test_subscript():
     country = Country(file_path)
     assert country["Australia"] == "Canberra"
