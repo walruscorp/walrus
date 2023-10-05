@@ -1,4 +1,3 @@
-import pytest
 import os
 from walrus.country import Country
 
