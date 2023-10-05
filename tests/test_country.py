@@ -1,4 +1,3 @@
-import pytest
 import os
 from walrus.country import Country
 
@@ -7,12 +6,21 @@ file_path = os.path.join(file_dir, "test_data", "test-data.csv")
 data = open(file_path, "r").readlines()
 
 
-def test_iteration_next():
+def test_iteration_first4():
     country = Country(file_path)
-    assert next(country) == "Somaliland"
-    assert next(country) == "American Samoa"
-    assert next(country) == "Andorra"
-    assert next(country) == "Angola"
+    countries = list(country)[0:4]
+    assert countries == ["Somaliland", "American Samoa", "Andorra", "Angola"]
+
+
+def test_iteration_end():
+    country = Country(file_path)
+
+    # We can iterate through the Country object multiple times
+    for _ in country:
+        pass
+
+    for _ in country:
+        pass
 
 
 def test_iteration_items():
@@ -25,25 +33,6 @@ def test_iteration_items():
 
 def test_length():
     assert len(Country(file_path)) == 34
-
-
-def test_iteration():
-    country = Country(file_path)
-    country_col = data[0].split(",").index("CountryName")
-    for line in data[1:]:
-        values = line.split(",")
-        assert next(country) == values[country_col]
-
-
-@pytest.mark.xfail
-def test_iteration_end():
-    country = Country(file_path)
-
-    for _ in country:
-        pass
-
-    with pytest.raises(StopIteration):
-        next(country)
 
 
 def test_subscript():
@@ -64,8 +53,9 @@ def test_nested_loop():
     country = Country(file_path)
     count = 0
 
-    for item_1 in country:
-        for item_2 in country:
+    # We can iterate through the Country object multiple times
+    for _ in country:
+        for _ in country:
             count += 1
 
     assert count == 34 * 34

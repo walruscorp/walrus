@@ -23,7 +23,7 @@ testpaths = [
 
 [project.optional-dependencies]
 dev = [
-    "black",
+    "black==23.9.1",
     "pytest",
     "twine",
     "flake8",
