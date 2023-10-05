@@ -6,6 +6,23 @@ file_path = os.path.join(file_dir, "test_data", "test-data.csv")
 data = open(file_path, "r").readlines()
 
 
+def test_iteration_first4():
+    country = Country(file_path)
+    countries = list(country)[0:4]
+    assert countries == ["Somaliland", "American Samoa", "Andorra", "Angola"]
+
+
+def test_iteration_end():
+    country = Country(file_path)
+
+    # We can iterate through the Country object multiple times
+    for _ in country:
+        pass
+
+    for _ in country:
+        pass
+
+
 def test_iteration_items():
     country = Country(file_path)
     country_col = data[0].split(",").index("CountryName")
@@ -36,8 +53,9 @@ def test_nested_loop():
     country = Country(file_path)
     count = 0
 
-    for item_1 in country:
-        for item_2 in country:
+    # We can iterate through the Country object multiple times
+    for _ in country:
+        for _ in country:
             count += 1
 
     assert count == 34 * 34
