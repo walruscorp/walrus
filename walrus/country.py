@@ -35,6 +35,7 @@ class Country:
 class CountryIterator:
     def __init__(self, country_capital):
         self._country_capital = country_capital
+        self._country_list = list(self._country_capital.keys())
         self._index = 0
 
     def __iter__(self):
@@ -42,7 +43,7 @@ class CountryIterator:
 
     def __next__(self):
         try:
-            country = list(self._country_capital.keys())[self._index]
+            country = self._country_list[self._index]
         except IndexError:
             raise StopIteration()
         self._index += 1
