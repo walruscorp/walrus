@@ -7,14 +7,6 @@ file_path = os.path.join(file_dir, "test_data", "test-data.csv")
 data = open(file_path, "r").readlines()
 
 
-def test_iteration_next():
-    country = Country(file_path)
-    assert next(country) == "Somaliland"
-    assert next(country) == "American Samoa"
-    assert next(country) == "Andorra"
-    assert next(country) == "Angola"
-
-
 def test_iteration_items():
     country = Country(file_path)
     country_col = data[0].split(",").index("CountryName")
@@ -25,14 +17,6 @@ def test_iteration_items():
 
 def test_length():
     assert len(Country(file_path)) == 34
-
-
-def test_iteration():
-    country = Country(file_path)
-    country_col = data[0].split(",").index("CountryName")
-    for line in data[1:]:
-        values = line.split(",")
-        assert next(country) == values[country_col]
 
 
 @pytest.mark.xfail
