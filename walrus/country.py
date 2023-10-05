@@ -2,22 +2,13 @@ class Country:
     def __init__(self, file_path):
         self._file_path = file_path
         self._country_capital = {}
-        self._length = 0
-        self._index = 0
         self._set_capital(file_path)
 
     def __getitem__(self, country_name):
         return self._country_capital.get(country_name, None)
 
     def __iter__(self):
-        return Country(self._file_path)
-
-    def __next__(self):
-        if self._index < self._length:
-            self._index += 1
-            return list(self._country_capital.keys())[self._index - 1]
-        else:
-            raise StopIteration
+        return CountryIterator(self._country_capital)
 
     def __len__(self):
         return self._length
@@ -40,3 +31,20 @@ class Country:
             }
 
             self._length = len(self._country_capital)
+
+
+class CountryIterator:
+    def __init__(self, country_capital):
+        self._country_capital = country_capital
+        self._index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        try:
+            country = list(self._country_capital.keys())[self._index]
+        except IndexError:
+            raise StopIteration()
+        self._index += 1
+        return country
