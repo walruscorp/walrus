@@ -1,6 +1,5 @@
 class Country:
     def __init__(self, file_path):
-        self._file_path = file_path
         self._country_capital = {}
         self._set_capital(file_path)
 

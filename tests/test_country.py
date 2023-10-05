@@ -27,7 +27,7 @@ def test_iteration_end():
         pass
 
     with pytest.raises(StopIteration):
-        next(country)
+        x = [_ for _ in country]
 
 
 def test_subscript():
