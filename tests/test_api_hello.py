@@ -6,4 +6,4 @@ def test_hello():
 
 
 def test_hello_es():
-    assert hello('es', raise_errors=False) in (None, 'Hola World')
+    assert hello("es", raise_errors=False) in (None, "Hola World")
