@@ -18,7 +18,7 @@ def hello(language=None, raise_errors=True):
     eps = entry_points()
     if "walrus.hello" not in eps:
         if raise_errors:
-            raise RuntimeError(f"No plugins for custom languages installed")
+            raise RuntimeError("No plugins for custom languages installed")
         else:
             return None
     else:
