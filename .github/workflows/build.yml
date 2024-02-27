@@ -27,6 +27,8 @@ jobs:
     - name: Build source
       run: pip install .[dev]
 
+    - name: Install plugin for walrus
+      run: pip install git+https://github.com/walruscorp/walrus_es.git
 
     - name: Black check mode
       run: black --check .
