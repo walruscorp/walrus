@@ -1,4 +1,5 @@
 import os
+from importlib.metadata import entry_points
 from walrus.country import Country
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
@@ -6,8 +7,27 @@ file_path = os.path.join(file_dir, "data", "country-capitals.csv")
 country = Country(file_path)
 
 
-def hello():
+def _hello():
     return "Hello World"
+
+
+def hello(language=None, raise_errors=True):
+    if language is None:
+        return _hello()
+
+    eps = entry_points()
+    if 'walrus.hello' not in eps:
+        if raise_errors:
+            raise RuntimeError(f'No plugins for custom languages installed')
+        else:
+            return None
+    else:
+        valid_eps = [ep for ep in eps['walrus.hello'] if ep.group == 'walrus.hello' and ep.name == language]
+        if len(valid_eps) == 0 and raise_errors:
+            raise RuntimeError(f'Plugin for language {language} not installed')
+        else:
+            fn = valid_eps[0].load()
+            return fn()
 
 
 def find_capital(country_name, raise_errors=False):
