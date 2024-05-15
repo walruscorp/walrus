@@ -23,9 +23,7 @@ def hello(language=None, raise_errors=True):
             return None
     else:
         valid_eps = [
-            ep
-            for ep in eps
-            if ep.group == "walrus.hello" and ep.name == language
+            ep for ep in eps if ep.group == "walrus.hello" and ep.name == language
         ]
         if len(valid_eps) == 0 and raise_errors:
             raise RuntimeError(f"Plugin for language {language} not installed")
