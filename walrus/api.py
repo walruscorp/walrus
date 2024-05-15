@@ -15,8 +15,8 @@ def hello(language=None, raise_errors=True):
     if language is None:
         return _hello()
 
-    eps = entry_points()
-    if "walrus.hello" not in eps:
+    eps = entry_points(group="walrus.hello")
+    if len(eps) == 0:
         if raise_errors:
             raise RuntimeError("No plugins for custom languages installed")
         else:
@@ -24,7 +24,7 @@ def hello(language=None, raise_errors=True):
     else:
         valid_eps = [
             ep
-            for ep in eps["walrus.hello"]
+            for ep in eps
             if ep.group == "walrus.hello" and ep.name == language
         ]
         if len(valid_eps) == 0 and raise_errors:
