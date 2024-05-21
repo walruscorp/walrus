@@ -38,6 +38,12 @@ jobs:
       run: flake8
 
     - name: Pytest
-      run: pytest
+      run: |
+        pytest --cov=walrus
+        coverage lcov -o coverage.info
 
-
+    - name: Coveralls GitHub Action
+      uses: coverallsapp/github-action@v2.3.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        file: coverage.info
