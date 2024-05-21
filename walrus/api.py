@@ -53,3 +53,7 @@ def get_capital(country_names, raise_errors=False):
             a_country: find_capital(a_country, raise_errors)
             for a_country in country_names
         }
+
+
+def foo():
+    return 42
