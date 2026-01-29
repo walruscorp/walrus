@@ -2,4 +2,6 @@
 
 ## Walrus
 
-This package is just to test out CI/testing/python coding etc.
+This package is to try out CI/testing/python coding/tooling in an isolated project, and hopefully have one place for field notes.
+
+See also [https://github.com/walruscorp/walrus_es](https://github.com/walruscorp/walrus_es) for an avaiable plugin for this project.

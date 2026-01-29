@@ -16,6 +16,9 @@ dependencies = []
 [project.scripts]
 walrus = "walrus.cli:main"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.setuptools.package-data]
 walrus = ["data/*.csv"]
 
