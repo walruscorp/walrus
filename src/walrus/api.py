@@ -2,6 +2,7 @@ import os
 from importlib.metadata import entry_points
 from walrus.country import Country
 
+
 file_dir = os.path.dirname(os.path.realpath(__file__))
 file_path = os.path.join(file_dir, "data", "country-capitals.csv")
 country = Country(file_path)
