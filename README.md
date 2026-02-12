@@ -34,3 +34,22 @@ tag = True
 it commits and adds a tag, so be careful. If it does do so, it insists on a clean `git status` so that the version bump stays its own commit without other changes. Seems reasonable.
 
 `setuptools-scm` is nice but it packages everything it finds in the `git` repo for inclusion in the sdist, forcing one to do acrobatics with `MANIFEST.in` etc..
+
+
+#### Notes on uv
+
+`uv` is not being used in this project. These notes are just general observations that sit here before there's a chance ot move them at a more appropriate place.
+
+- `uv init` generates, among other files:
+  - `pyproject.toml`
+  - `.python_version` (git tracked) - This also goes as `requires-python` in `pyproject.toml`.
+- `uvx cowsay -t moo` runs, but doesn't modify anything in the project.
+- `uv run cowsay -t moo` fails (but creates a `uv.lock` since it was the first invocation of `uv run`).
+- `uv run` is really just `.venv/bin/python ..` or `.venv/bin/python -m ..`
+- `uv pip install cowsay` installs `cowsay` and we can now run `uv run cowsay -t moo`, but the requirement didn't go anywhere (`uv.lock` is unmodified, and no new files are created).
+- `uv add cowsay` adds to `uv.lock`, as well as `pyproject.toml [dependencies]` (with a specific `"cowsay>=6.1"`, indicating what was used during `uv add`). We could have said "uv add cowsay>5" to be a bit more specific.
+- `uv add --dev pytest` adds a "dependency group", not an "extra".
+
+The general philosophy behind `uv.lock` seems to be that a developer specifying version X does not logically imply freezing all transitive dependencies forever. The graph should be resolved not later, but at declaration time.
+
+
