@@ -1,10 +1,10 @@
-[![Build Package and Test it](https://github.com/vineetbansal/walrus/actions/workflows/build.yml/badge.svg)](https://github.com/vineetbansal/walrus/actions/workflows/build.yml)
+[![Build Package and Test it](https://github.com/walruscorp/walrus/actions/workflows/build.yml/badge.svg)](https://github.com/walruscorp/walrus/actions/workflows/build.yml)
 
 ## Walrus
 
 This package is to try out CI/testing/python coding/tooling in an isolated project, and hopefully have one place for field notes.
 
-See also [https://github.com/walruscorp/walrus_es](https://github.com/walruscorp/walrus_es) for an avaiable plugin for this project.
+See also [https://github.com/walruscorp/walrus_es](https://github.com/walruscorp/walrus_es) for an available plugin for this project.
 
 
 ### Pre-commit
@@ -51,5 +51,3 @@ it commits and adds a tag, so be careful. If it does do so, it insists on a clea
 - `uv add --dev pytest` adds a "dependency group", not an "extra".
 
 The general philosophy behind `uv.lock` seems to be that a developer specifying version X does not logically imply freezing all transitive dependencies forever. The graph should be resolved not later, but at declaration time.
-
-
