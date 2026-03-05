@@ -51,5 +51,3 @@ it commits and adds a tag, so be careful. If it does do so, it insists on a clea
 - `uv add --dev pytest` adds a "dependency group", not an "extra".
 
 The general philosophy behind `uv.lock` seems to be that a developer specifying version X does not logically imply freezing all transitive dependencies forever. The graph should be resolved not later, but at declaration time.
-
-
