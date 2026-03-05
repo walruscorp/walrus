@@ -34,15 +34,13 @@ def hello(language=None, raise_errors=True):
 
 
 def find_capital(country_name, raise_errors=False):
-    capital = country[country_name]
-
-    if capital is None:
+    if country_name not in country:
         if raise_errors:
             raise ValueError(f"Data not found for: {country_name}")
         else:
             return None
-
-    return capital
+    else:
+        return country[country_name]
 
 
 def get_capital(country_names, raise_errors=False):
