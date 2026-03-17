@@ -1,7 +1,5 @@
 [![Build Package and Test it](https://github.com/walruscorp/walrus/actions/workflows/build.yml/badge.svg)](https://github.com/walruscorp/walrus/actions/workflows/build.yml)
 
-This branch is to test auto-triggering pulls.
-
 ## Walrus
 
 This package is to try out CI/testing/python coding/tooling in an isolated project, and hopefully have one place for field notes.
